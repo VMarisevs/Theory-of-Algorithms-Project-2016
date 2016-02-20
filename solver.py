@@ -45,7 +45,7 @@ def solve(map, chars):
 	if key in map:
 		result = map[key]
 	else:
-		print 'no 9 letter word'
+		#print 'no 9 letter word'
 		
 		result = recursionSolution(chars, map)
 		
@@ -81,7 +81,7 @@ def recursionSolution(chars, map):
 	
 	return result
 
-if __name__ == '__main__':
+def mainFull():
 	import GenerateChars
 	
 	chars = GenerateChars.generate()
@@ -90,18 +90,40 @@ if __name__ == '__main__':
 	
 	#chars = ['a','u','c','t','i','o','n','e','d']
 	
-	print "".join(chars)
+	#print "".join(chars)
 
 	wordmap = preprocessing()
 	
 	result = solve(wordmap, chars)
 	
-	print result
+	#print result
 	
-#
-#	print wordmap["".join(sorted('axle'))]
-#	import timeit
-#	
-#	# testing preprocessing method:
-#	print(timeit.timeit("preprocessing()", setup="from __main__ import preprocessing", number=100))
-#	
+def mainWithoutPre(wordmap):
+	import GenerateChars
+	
+	chars = GenerateChars.generate()
+	
+	#chars = ['a','a','r','d','v','a','r','k','s']
+	
+	#chars = ['a','u','c','t','i','o','n','e','d']
+	
+	#print "".join(chars)
+	
+	result = solve(wordmap, chars)
+	
+	#print result
+	
+#if __name__ == '__main__':
+	
+import timeit
+
+# testing including preprocessing method:
+#print(timeit.timeit("main()", setup="from __main__ import main", number=100))
+
+# testing without preprocessing:
+wordmap = preprocessing()
+t = timeit.Timer(stmt="solver.mainWithoutPre(solver.wordmap)", setup="import solver")  
+print t.timeit(100)
+	
+	#print(timeit.timeit("mainWithoutPre(wordmap)", setup="from __main__ import mainWithoutPre", number=100))
+	
