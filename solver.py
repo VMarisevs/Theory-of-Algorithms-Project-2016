@@ -47,8 +47,39 @@ def solve(map, chars):
 	else:
 		print 'no 9 letter word'
 		
+		result = recursionSolution(chars, map)
+		
+		#if len(result) == 0:
+		#	print "running"
+		#	result = recursionSolution(chars[-1], map)
+		
 	return result
 
+	
+def recursionSolution(chars, map):
+	result = []
+	
+	for x in xrange(len(chars)):		
+		newchars = chars[:x] + chars[(x+1):]
+#		print chars
+#		del newchars[x]
+#		word = ""
+#		for letter in xrange(len(chars)):
+#			if x != letter:
+#				word += chars[letter]
+		
+#		print newchars
+		key = hashkey(newchars)
+		
+		if key in map:
+			result += map[key]
+	
+	if len(result) == 0:
+		for x in xrange(len(chars)):		
+			newchars = chars[:x] + chars[(x+1):]
+			result = recursionSolution(newchars, map)
+	
+	return result
 
 if __name__ == '__main__':
 	import GenerateChars
@@ -59,7 +90,7 @@ if __name__ == '__main__':
 	
 	#chars = ['a','u','c','t','i','o','n','e','d']
 	
-	print chars
+	print "".join(chars)
 
 	wordmap = preprocessing()
 	
