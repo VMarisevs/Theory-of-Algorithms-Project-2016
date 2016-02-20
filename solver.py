@@ -37,12 +37,38 @@ def preprocessing(filename="words.txt"):
 	
 	return wordmap
 	
+def solve(map, chars):
+	result = []
 
-wordmap = preprocessing()
+	key = hashkey("".join(chars))
+	
+	if key in map:
+		result = map[key]
+	else:
+		print 'no 9 letter word'
+		
+	return result
 
-print wordmap["".join(sorted('axle'))]
 
-#if __name__ == '__main__':
+if __name__ == '__main__':
+	import GenerateChars
+	
+	chars = GenerateChars.generate()
+	
+	#chars = ['a','a','r','d','v','a','r','k','s']
+	
+	#chars = ['a','u','c','t','i','o','n','e','d']
+	
+	print chars
+
+	wordmap = preprocessing()
+	
+	result = solve(wordmap, chars)
+	
+	print result
+	
+#
+#	print wordmap["".join(sorted('axle'))]
 #	import timeit
 #	
 #	# testing preprocessing method:
