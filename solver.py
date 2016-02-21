@@ -45,9 +45,25 @@ def solve(map, chars):
 	if key in map:
 		result = map[key]
 	else:
-		#print 'no 9 letter word'
+		print 'no 9 letter word'
 		
-		result = recursionSolution(chars, map)
+		# loops back from 8 - 0
+		for i in reversed(xrange(9)):
+			#print i
+			combkey = []
+			
+			combinations("", key, i,combkey)
+			
+			for combination in combkey:
+				comb = "".join(sorted(combination))
+				if comb in map:
+					result += map[comb]
+			
+			if len(result) > 0:
+				return result
+			#print combkey
+		
+		#result = recursionSolution(chars, map)
 		
 		#if len(result) == 0:
 		#	print "running"
@@ -55,6 +71,20 @@ def solve(map, chars):
 		
 	return result
 
+# if the solution won't be found in first iteration (with 9 letters)
+# then it will generate set of combinations with 8 letters,
+# if no solution found, it will go lower with 7 letters and so on...
+# combination generator code was taken from:
+#http://stackoverflow.com/questions/127704/algorithm-to-return-all-combinations-of-k-elements-from-n
+
+def combinations(combination, key, length, combination_list):
+	if length == 0:
+		combination_list.append(combination)
+		#print combination
+		#return combination
+	else:
+		for i in range(len(key)):
+			combinations(combination + key[i], key[i+1:], length-1, combination_list)
 	
 def recursionSolution(chars, map):
 	result = []
@@ -90,13 +120,13 @@ def mainFull():
 	
 	#chars = ['a','u','c','t','i','o','n','e','d']
 	
-	#print "".join(chars)
+	print "".join(chars)
 
 	wordmap = preprocessing()
 	
 	result = solve(wordmap, chars)
 	
-	#print result
+	print result
 	
 def mainWithoutPre(wordmap):
 	import GenerateChars
@@ -113,17 +143,18 @@ def mainWithoutPre(wordmap):
 	
 	#print result
 	
-#if __name__ == '__main__':
+if __name__ == '__main__':
+	mainFull()
 	
-import timeit
+#import timeit
 
 # testing including preprocessing method:
 #print(timeit.timeit("main()", setup="from __main__ import main", number=100))
 
 # testing without preprocessing:
-wordmap = preprocessing()
-t = timeit.Timer(stmt="solver.mainWithoutPre(solver.wordmap)", setup="import solver")  
-print t.timeit(100)
+#wordmap = preprocessing()
+#t = timeit.Timer(stmt="solver.mainWithoutPre(solver.wordmap)", setup="import solver")  
+#print t.timeit(100)
 	
 	#print(timeit.timeit("mainWithoutPre(wordmap)", setup="from __main__ import mainWithoutPre", number=100))
 	
