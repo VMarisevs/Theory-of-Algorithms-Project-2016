@@ -51,7 +51,7 @@ def solve(map, chars):
 	key = hashkey("".join(chars))
 	
 	# for iteration calculation:
-	iteration_counter = 0
+	#iteration_counter = 0
 	
 	if key in map:
 		result.update(map[key])
@@ -74,8 +74,8 @@ def solve(map, chars):
 			combinations("", key, i,combkey)
 			
 			for combination in combkey:
-				iteration_counter += 1
-				print iteration_counter
+				#iteration_counter += 1
+				#print iteration_counter
 				# checking if this combination exits in the map
 				# populating result set
 				comb = "".join(sorted(combination))
@@ -123,7 +123,7 @@ def mainFull():
 	# and won't find the goal
 	
 	#chars = ['f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f']
-	chars = ['z', 'f', 'w', 'r', 'b', 'p', 'd', 'g', 'h']
+	#chars = ['z', 'f', 'w', 'r', 'b', 'p', 'd', 'g', 'h']
 	
 	print "Generated char sequence: ","".join(chars)
 
