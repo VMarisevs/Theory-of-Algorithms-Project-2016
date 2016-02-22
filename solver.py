@@ -38,26 +38,27 @@ def preprocessing(filename="words.txt"):
 	return wordmap
 	
 def solve(map, chars):
-	result = []
+	result = set()
 
 	key = hashkey("".join(chars))
 	
 	if key in map:
-		result = map[key]
+		result.update(map[key])
 	else:
 		print 'no 9 letter word'
 		
 		# loops back from 8 - 0
 		for i in reversed(xrange(9)):
 			#print i
-			combkey = []
+			combkey = set()
 			
 			combinations("", key, i,combkey)
 			
 			for combination in combkey:
 				comb = "".join(sorted(combination))
 				if comb in map:
-					result += map[comb]
+					#result += map[comb]
+					result.update(map[comb])
 			
 			if len(result) > 0:
 				return result
@@ -79,7 +80,7 @@ def solve(map, chars):
 
 def combinations(combination, key, length, combination_list):
 	if length == 0:
-		combination_list.append(combination)
+		combination_list.add(combination)
 		#print combination
 		#return combination
 	else:
@@ -119,6 +120,8 @@ def mainFull():
 	#chars = ['a','a','r','d','v','a','r','k','s']
 	
 	#chars = ['a','u','c','t','i','o','n','e','d']
+	chars = ['i', 'a', 'u', 'm', 'z', 'm', 'b', 'e', 'n']
+	chars = ['a', 'b', 'e', 'i', 'm', 'm', 'n', 'u', 'z']
 	
 	print "".join(chars)
 
