@@ -6,7 +6,7 @@
 # For the start I will implement very basic algorithm:
 #	- Creating a Map with sorted(word) as a key 
 #	- and list of words as value
-# This will allow me to get result best case scenario in first iteration
+# This will allow me to get result in the best case scenario in first iteration
 # In worse case I will be looping down with different combinations
 #
 
