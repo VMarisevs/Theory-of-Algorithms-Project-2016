@@ -18,12 +18,15 @@ def hashkey(word):
     return key
 
 def preprocessing(filename="words.txt"):
-	
+	# creating a word map with key based on hashkey function
+	# and value of list of words
+	# reading file and populating the map
 	wordmap = {}
 	
 	file = open(filename, 'r')
 	
 	for word in file:
+		# removing /n character
 		word = word.strip()
 		
 		key = hashkey(word)
@@ -38,39 +41,47 @@ def preprocessing(filename="words.txt"):
 	return wordmap
 	
 def solve(map, chars):
+	# result set will be populated with goal words
 	result = set()
 
+	# checking if the given char sequence exists in the map
+	# to do that, apply hash algorithm and polling the map
+	# if not going to else statement
 	key = hashkey("".join(chars))
 	
 	if key in map:
 		result.update(map[key])
+	
 	else:
-		#print 'no 9 letter word'
+		# in else statement we are looping down from 8 characters to 1
+		# generating combinations with downgrading the length
+		# then looping through all combinations to get the result
+		# if any of the combinations exists in the map, it will populate
+		# result set. If result set is populated it exits from loop
+		# and returns the result
 		
-		# loops back from 8 - 0
+		# https://www.mathsisfun.com/combinatorics/combinations-permutations.html
 		for i in reversed(xrange(9)):
-			#print i
+			
+			# this key combination set will allow to eliminate duplicates
+			# that might save some steps while polling the map
 			combkey = set()
 			
 			combinations("", key, i,combkey)
 			
 			for combination in combkey:
+				# checking if this combination exits in the map
+				# populating result set
 				comb = "".join(sorted(combination))
 				if comb in map:
-					#result += map[comb]
 					result.update(map[comb])
 			
+			# early exit from for loop
 			if len(result) > 0:
 				return result
-			#print combkey
-		
-		#result = recursionSolution(chars, map)
-		
-		#if len(result) == 0:
-		#	print "running"
-		#	result = recursionSolution(chars[-1], map)
 		
 	return result
+
 
 # if the solution won't be found in first iteration (with 9 letters)
 # then it will generate set of combinations with 8 letters,
@@ -81,11 +92,13 @@ def solve(map, chars):
 def combinations(combination, key, length, combination_list):
 	if length == 0:
 		combination_list.add(combination)
-		#print combination
-		#return combination
 	else:
 		for i in range(len(key)):
 			combinations(combination + key[i], key[i+1:], length-1, combination_list)
+
+
+			
+# THIS code is for Testing:
 
 def mainFull():
 	import GenerateChars
@@ -95,10 +108,16 @@ def mainFull():
 	#chars = ['a','a','r','d','v','a','r','k','s']
 	
 	#chars = ['a','u','c','t','i','o','n','e','d']
-	chars = ['i', 'a', 'u', 'm', 'z', 'm', 'b', 'e', 'n']
+	
+	# They both the same, but second is sorted
+	#chars = ['i', 'a', 'u', 'm', 'z', 'm', 'b', 'e', 'n']
 	chars = ['a', 'b', 'e', 'i', 'm', 'm', 'n', 'u', 'z']
 	
-	print "".join(chars)
+	# This is a worse case, when it will go through all iterations
+	# and won't find the goal
+	#chars = ['f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f']
+	
+	print "Generated char sequence: ","".join(chars)
 
 	wordmap = preprocessing()
 	
