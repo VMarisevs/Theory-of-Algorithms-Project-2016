@@ -28,3 +28,29 @@ In this section I am creating a map with key as sorted word characters and a lis
 ### Solver
 - To get the result I am getting a hashcode of generated 9 letter string and checking if it exists in the map, if yes - return result. This is the best case scenario. Getting result in one iteration.
 - In case there is no 9 letter hashcode in the map, starting count down with combination generation. And if it will find the result with 6 letters length it will continue until all combinations with length 6 completed and all result set combined. Then it will exit the loop. This will save us from iterating other combinations, because we already found the longest words with this key.
+
+## Efficiency
+In best case scenario this script can give the result in constant time in one iteration. 
+In worse case it will not find any result and go through all combinations using formula:
+    n!
+~~        ~~
+  r!(n-r)!
+
+n = 9 - constant length
+r = 8-1 iterable variable  
+  
+1. Not found with length 9. Iteration 1
+1. (9!)/((8!)*(9-8)!) = 362880 / 40320 = 9
+1. (9!)/((7!)*(9-7)!) = 362880 / 10080 = 36
+1. (9!)/((6!)*(9-6)!) = 362880 / 4320  = 84
+1. (9!)/((5!)*(9-5)!) = 362880 / 2880  = 126
+1. (9!)/((4!)*(9-4)!) = 362880 / 2880  = 126
+1. (9!)/((3!)*(9-3)!) = 362880 / 4320  = 84
+1. (9!)/((2!)*(9-2)!) = 362880 / 10080 = 36
+1. (9!)/((1!)*(9-1)!) = 362880 / 2880  = 9
+Total = 510 + 1
+
+## References
+[Some code was taken from my gist](https://gist.github.com/VMarisevs/8eb0437668cbad54aab7)
+[Combination generation code](http://stackoverflow.com/questions/127704/algorithm-to-return-all-combinations-of-k-elements-from-n)
+[Some combination theory](https://www.mathsisfun.com/combinatorics/combinations-permutations.html)

@@ -13,6 +13,7 @@
 # some code was taken from my gist
 # https://gist.github.com/VMarisevs/8eb0437668cbad54aab7
 
+
 def hashkey(word):
     key = "".join(sorted(word))
     return key
@@ -43,11 +44,14 @@ def preprocessing(filename="words.txt"):
 def solve(map, chars):
 	# result set will be populated with goal words
 	result = set()
-
+	
 	# checking if the given char sequence exists in the map
 	# to do that, apply hash algorithm and polling the map
 	# if not going to else statement
 	key = hashkey("".join(chars))
+	
+	# for iteration calculation:
+	iteration_counter = 0
 	
 	if key in map:
 		result.update(map[key])
@@ -70,6 +74,8 @@ def solve(map, chars):
 			combinations("", key, i,combkey)
 			
 			for combination in combkey:
+				iteration_counter += 1
+				print iteration_counter
 				# checking if this combination exits in the map
 				# populating result set
 				comb = "".join(sorted(combination))
@@ -111,11 +117,13 @@ def mainFull():
 	
 	# They both the same, but second is sorted
 	#chars = ['i', 'a', 'u', 'm', 'z', 'm', 'b', 'e', 'n']
-	chars = ['a', 'b', 'e', 'i', 'm', 'm', 'n', 'u', 'z']
+	#chars = ['a', 'b', 'e', 'i', 'm', 'm', 'n', 'u', 'z']
 	
 	# This is a worse case, when it will go through all iterations
 	# and won't find the goal
+	
 	#chars = ['f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f']
+	chars = ['z', 'f', 'w', 'r', 'b', 'p', 'd', 'g', 'h']
 	
 	print "Generated char sequence: ","".join(chars)
 
