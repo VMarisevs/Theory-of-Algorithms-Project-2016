@@ -45,7 +45,7 @@ def solve(map, chars):
 	if key in map:
 		result.update(map[key])
 	else:
-		print 'no 9 letter word'
+		#print 'no 9 letter word'
 		
 		# loops back from 8 - 0
 		for i in reversed(xrange(9)):
@@ -76,7 +76,7 @@ def solve(map, chars):
 # then it will generate set of combinations with 8 letters,
 # if no solution found, it will go lower with 7 letters and so on...
 # combination generator code was taken from:
-#http://stackoverflow.com/questions/127704/algorithm-to-return-all-combinations-of-k-elements-from-n
+# http://stackoverflow.com/questions/127704/algorithm-to-return-all-combinations-of-k-elements-from-n
 
 def combinations(combination, key, length, combination_list):
 	if length == 0:
@@ -86,31 +86,6 @@ def combinations(combination, key, length, combination_list):
 	else:
 		for i in range(len(key)):
 			combinations(combination + key[i], key[i+1:], length-1, combination_list)
-	
-def recursionSolution(chars, map):
-	result = []
-	
-	for x in xrange(len(chars)):		
-		newchars = chars[:x] + chars[(x+1):]
-#		print chars
-#		del newchars[x]
-#		word = ""
-#		for letter in xrange(len(chars)):
-#			if x != letter:
-#				word += chars[letter]
-		
-#		print newchars
-		key = hashkey(newchars)
-		
-		if key in map:
-			result += map[key]
-	
-	if len(result) == 0:
-		for x in xrange(len(chars)):		
-			newchars = chars[:x] + chars[(x+1):]
-			result = recursionSolution(newchars, map)
-	
-	return result
 
 def mainFull():
 	import GenerateChars
@@ -145,19 +120,6 @@ def mainWithoutPre(wordmap):
 	result = solve(wordmap, chars)
 	
 	#print result
-	
+
 if __name__ == '__main__':
 	mainFull()
-	
-#import timeit
-
-# testing including preprocessing method:
-#print(timeit.timeit("main()", setup="from __main__ import main", number=100))
-
-# testing without preprocessing:
-#wordmap = preprocessing()
-#t = timeit.Timer(stmt="solver.mainWithoutPre(solver.wordmap)", setup="import solver")  
-#print t.timeit(100)
-	
-	#print(timeit.timeit("mainWithoutPre(wordmap)", setup="from __main__ import mainWithoutPre", number=100))
-	
