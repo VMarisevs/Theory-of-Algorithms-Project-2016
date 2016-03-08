@@ -3,13 +3,15 @@
 # Date March 31st 2016
 
 #
-# For the start I will implement very basic algorithm:
-#	- Creating a Map with sorted(word) as a key 
-#	- and list of existing words as value
-# This will allow me to get result in the best case scenario in first iteration
-# In worse case I will be looping down with different combinations
-#
-
+# In this branch I will use different hash algorithm for map
+# I will create sum of ascii codes as key. Ofcourse I would 
+# have to do some error checking before I am adding word into result set
+# and also to avoid errors with length, I will use different maps:
+# Map with 9 letter words, key = sum(ascii); value = list of words, which has to be double checked before posting
+# Map with 8 letter words,
+# ...
+# 
+# Using this algorithm I might save some time on the sorting algorithm
 # some code was taken from my gist
 # https://gist.github.com/VMarisevs/8eb0437668cbad54aab7
 
