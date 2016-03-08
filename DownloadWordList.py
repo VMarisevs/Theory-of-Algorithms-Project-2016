@@ -34,13 +34,16 @@ def downloadWordList(link):
 	
 	output.close()
 	
-	# Extracting zip archive 
-	# http://stackoverflow.com/a/3451150
-	import zipfile
-	
-	zip = zipfile.ZipFile( file_name + '.zip')
-	zip.extractall()
-	zip.close()
+	# Extracting zip archive
+	# using gzip module
+	# https://docs.python.org/2/library/gzip.html
+	# http://stackoverflow.com/a/20635502
+	import gzip
+	inF = gzip.open(file_name + '.zip', 'rb')
+	outF = open(file_name, 'wb')
+	outF.write( inF.read() )
+	inF.close()
+	outF.close()
 	
 	
 def parseFile(filename):
@@ -67,4 +70,4 @@ def parseFile(filename):
 if __name__ == "__main__":
 	downloadWordList("http://www.bestwordlist.com/allwords.txt")
 	#downloadWordList("http://www-01.sil.org/linguistics/wordlists/english/")
-	# parseFile("allwords.txt")
+	parseFile("allwords.txt")
