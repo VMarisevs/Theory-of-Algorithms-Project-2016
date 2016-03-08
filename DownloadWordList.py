@@ -53,7 +53,7 @@ def parseFile(filename):
 	#
 	fileRead = open(filename, 'r')
 	
-	fileWrite = open('bestwordlist.txt','wb')
+	fileWrite = open('words.txt','wb')
 	
 	counter = 0;
 	for line in fileRead:
