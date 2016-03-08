@@ -53,14 +53,14 @@ def parseFile(filename):
 	#
 	fileRead = open(filename, 'r')
 	
-	fileWrite = open('words.txt','wb')
+	fileWrite = open('bestwordlist.txt','wb')
 	
 	counter = 0;
 	for line in fileRead:
 		if counter != 0:
 			fileWrite.write(line.replace(" ", "\n").lower())
-		else:
-			print line
+		#else:
+			#print line
 		counter+=1
 	
 	fileWrite.close()
@@ -69,5 +69,5 @@ def parseFile(filename):
 	
 if __name__ == "__main__":
 	downloadWordList("http://www.bestwordlist.com/allwords.txt")
-	#downloadWordList("http://www-01.sil.org/linguistics/wordlists/english/")
 	parseFile("allwords.txt")
+	print "List of words successfully created."
