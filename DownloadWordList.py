@@ -13,7 +13,7 @@ def downloadWordList(link):
 	file_name = link.split('/')[-1]
 	
 	txtfile = urllib2.urlopen(link)
-	output = open('test.txt.zip','wb')
+	output = open( file_name + '.zip','wb')
 	
 	meta = txtfile.info()
 	file_size = int(meta.getheaders("Content-Length")[0])
@@ -33,6 +33,14 @@ def downloadWordList(link):
 		print status,
 	
 	output.close()
+	
+	# Extracting zip archive 
+	# http://stackoverflow.com/a/3451150
+	import zipfile
+	
+	zip = zipfile.ZipFile( file_name + '.zip')
+	zip.extractall()
+	zip.close()
 	
 	
 def parseFile(filename):
@@ -57,6 +65,6 @@ def parseFile(filename):
 	
 	
 if __name__ == "__main__":
-	#downloadWordList("http://www.bestwordlist.com/allwords.txt")
+	downloadWordList("http://www.bestwordlist.com/allwords.txt")
 	#downloadWordList("http://www-01.sil.org/linguistics/wordlists/english/")
-	parseFile("allwords.txt")
+	# parseFile("allwords.txt")
