@@ -1,11 +1,11 @@
 # Vladislavs Marisevs
 # G00305490
-# Date
+# Date March 31st 2016
 
 #
 # For the start I will implement very basic algorithm:
 #	- Creating a Map with sorted(word) as a key 
-#	- and list of words as value
+#	- and list of existing words as value
 # This will allow me to get result in the best case scenario in first iteration
 # In worse case I will be looping down with different combinations
 #
@@ -92,8 +92,10 @@ def solve(map, chars):
 # if the solution won't be found in first iteration (with 9 letters)
 # then it will generate set of combinations with 8 letters,
 # if no solution found, it will go lower with 7 letters and so on...
-# combination generator code was taken from:
+# combination generator code was taken from this post:
 # http://stackoverflow.com/questions/127704/algorithm-to-return-all-combinations-of-k-elements-from-n
+# this answer was the key:
+# http://stackoverflow.com/a/17996834
 
 def combinations(combination, key, length, combination_list):
 	if length == 0:
@@ -132,21 +134,6 @@ def mainFull():
 	result = solve(wordmap, chars)
 	
 	print result
-	
-def mainWithoutPre(wordmap):
-	import GenerateChars
-	
-	chars = GenerateChars.generate()
-	
-	#chars = ['a','a','r','d','v','a','r','k','s']
-	
-	#chars = ['a','u','c','t','i','o','n','e','d']
-	
-	#print "".join(chars)
-	
-	result = solve(wordmap, chars)
-	
-	#print result
 
 if __name__ == '__main__':
 	mainFull()
