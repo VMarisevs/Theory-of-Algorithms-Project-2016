@@ -112,7 +112,7 @@ def mainFull():
 	import GenerateChars
 	
 	chars = GenerateChars.generate()
-	chars = ['i', 'u', 'e', 'z', 't', 'w', 'd', 'j', 'u']
+	#chars = ['i', 'u', 'e', 'z', 't', 'w', 'd', 'j', 'u']
 	#chars = ['a','a','r','d','v','a','r','k','s']
 	
 	#chars = ['a','u','c','t','i','o','n','e','d']
@@ -125,7 +125,7 @@ def mainFull():
 	# and won't find the goal
 	
 	#chars = ['f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f']
-	#chars = ['z', 'f', 'w', 'r', 'b', 'p', 'd', 'g', 'h']
+	chars = ['z', 'f', 'w', 'r', 'b', 'p', 'd', 'g', 'h']
 	
 	print "Generated char sequence: ","".join(chars)
 
