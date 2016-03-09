@@ -23,6 +23,6 @@ if __name__ == '__main__':
 	import timeit
 	print(timeit.timeit("timeitWithoutPre()", setup="from __main__ import timeitWithoutPre", number=100))
 	
-	# 3.00380281329
-	# 3.0031364343
-	# 3.05906537489
+	# 0.214441232742
+	# 0.217732144018
+	# 0.215366912372

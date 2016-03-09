@@ -13,6 +13,6 @@ if __name__ == '__main__':
 	print(timeit.timeit("timeitWithPre()", setup="from __main__ import timeitWithPre", number=20))
 	
 
-	# 6.11212466922
-	# 6.10481538622
-	# 6.18407626118
+	# 7.61404991734
+	# 7.62646127534
+	# 7.64193379952
