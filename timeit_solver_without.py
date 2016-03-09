@@ -17,7 +17,12 @@ if __name__ == '__main__':
 	import GenerateChars
 	
 	chars = GenerateChars.generate()
+	chars = ['i', 'u', 'e', 'z', 't', 'w', 'd', 'j', 'u']
 	wordmap = solver.preprocessing()
 	
 	import timeit
-	print(timeit.timeit("timeitWithoutPre()", setup="from __main__ import timeitWithoutPre", number=1))
+	print(timeit.timeit("timeitWithoutPre()", setup="from __main__ import timeitWithoutPre", number=100))
+	
+	# 0.109441814001
+	# 0.110005339702
+	# 0.110512118758
