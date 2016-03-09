@@ -20,7 +20,7 @@ def hashkey(word):
     key = 0
     
     for letter in word:
-       key += ord(letter)
+       key += ord(letter)*ord(letter)
 
     return key
 
