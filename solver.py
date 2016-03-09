@@ -17,33 +17,40 @@
 
 
 def hashkey(word):
-    key = "".join(sorted(word))
+    key = 0
+    
+    for letter in word:
+       key += ord(letter)
+
     return key
 
 def preprocessing(filename="words.txt"):
-	# creating a word map with key based on hashkey function
-	# and value of list of words
-	# reading file and populating the map
-	wordmap = {}
-	
+	# Creating list of dictionaries (maps) 0-8
+	# This dictionaries corresponds to word length
+	# wordmap[0] -> dictionary with word length = 1
+	# wordmap[1] -> dictionary with word length = 2
+	# ...
+	# https://docs.python.org/2/tutorial/datastructures.html#dictionaries
+	wordmap = [dict(),dict(),dict(),dict(),dict(),dict(),dict(),dict(),dict()]
+
 	file = open(filename, 'r')
 	
 	for word in file:
 		# removing /n character
 		word = word.strip()
 		
-		key = hashkey(word)
-		
-		if key in wordmap:
-			#populate
-			wordmap[key].append(word)
-		else:
-			#insert
-			wordmap[key] = [word]
+		# insert words only if their length less or equals than 9 letters
+		if len(word) <= len(wordmap):
+			key = hashkey(word)
+			
+			if key not in wordmap[len(word)-1]:
+				wordmap[len(word)-1][key] = set()
+				
+			wordmap[len(word)-1][key].add(word)
 	
 	return wordmap
 	
-def solve(map, chars):
+def solve(listmaps, chars):
 	# result set will be populated with goal words
 	result = set()
 	
@@ -55,10 +62,10 @@ def solve(map, chars):
 	# for iteration calculation:
 	#iteration_counter = 0
 	
-	if key in map:
-		result.update(map[key])
-	
-	else:
+	if key in listmaps[8]:
+		result = listmaps[8][key]
+		result = errorchecking(chars, result)
+	if len(result) == 0:
 		# in else statement we are looping down from 8 characters to 1
 		# generating combinations with downgrading the length
 		# then looping through all combinations to get the result
@@ -73,24 +80,54 @@ def solve(map, chars):
 			# that might save some steps while polling the map
 			combkey = set()
 			
-			combinations("", key, i,combkey)
+			combinations("", chars, i,combkey)
 			
 			for combination in combkey:
 				#iteration_counter += 1
 				#print iteration_counter
 				# checking if this combination exits in the map
 				# populating result set
-				comb = "".join(sorted(combination))
-				if comb in map:
-					result.update(map[comb])
+	
+				key = hashkey("".join(combination))
+				if key in listmaps[i-1]:
+					#print key, " ", listmaps[i][key]
+					result.update(listmaps[i-1][key])
 			
 			# early exit from for loop
 			if len(result) > 0:
-				return result
+				#print result
+				result = errorcombchecking(combkey,result)
+				if len(result) > 0:	
+					return result
 		
 	return result
 
+def errorcombchecking(combinations, resultset):
+	#print resultset
+	# sorting all possible combinations
+	result = set()
+	sortedcombinations = dict()
+	for comb in combinations:
+		sortedcombinations["".join(sorted(comb))] = None
+	
+	#print sortedcombinations
+	
+	for word in resultset:
+		if "".join(sorted(word)) in sortedcombinations:
+			result.add(word)
+	return result
 
+def errorchecking(chars, resultset):
+	result = set()
+	
+	sortedchars = "".join(sorted(chars))
+	
+	for word in resultset:
+		if sortedchars == "".join(sorted(word)):
+			result.add(word)
+	
+	return result
+	
 # if the solution won't be found in first iteration (with 9 letters)
 # then it will generate set of combinations with 8 letters,
 # if no solution found, it will go lower with 7 letters and so on...
@@ -109,6 +146,9 @@ def combinations(combination, key, length, combination_list):
 
 			
 # THIS code is for Testing:
+def main():
+	wordmaps = preprocessing()
+	print wordmaps
 
 def mainFull():
 	import GenerateChars
@@ -116,6 +156,8 @@ def mainFull():
 	chars = GenerateChars.generate()
 	
 	#chars = ['a','a','r','d','v','a','r','k','s']
+	#chars = ['e', 'd', 'i', 'j', 'u', 't', 'w', 'z']
+	chars = ['i', 'u', 'e', 'z', 't', 'w', 'd', 'j', 'u']
 	
 	#chars = ['a','u','c','t','i','o','n','e','d']
 	
