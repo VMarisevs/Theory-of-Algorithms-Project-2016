@@ -90,12 +90,13 @@ def solve(listmaps, chars):
 	
 				key = hashkey("".join(combination))
 				if key in listmaps[i-1]:
-					#print key, " ", listmaps[i][key]
 					result.update(listmaps[i-1][key])
 			
 			# early exit from for loop
 			if len(result) > 0:
 				#print result
+				# before we exit from function,
+				# we have to check if all words match the charset, because we are using sum function which is not precise
 				result = errorcombchecking(combkey,result)
 				if len(result) > 0:	
 					return result
@@ -157,7 +158,7 @@ def mainFull():
 	
 	#chars = ['a','a','r','d','v','a','r','k','s']
 	#chars = ['e', 'd', 'i', 'j', 'u', 't', 'w', 'z']
-	chars = ['i', 'u', 'e', 'z', 't', 'w', 'd', 'j', 'u']
+	#chars = ['i', 'u', 'e', 'z', 't', 'w', 'd', 'j', 'u']
 	
 	#chars = ['a','u','c','t','i','o','n','e','d']
 	
