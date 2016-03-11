@@ -239,7 +239,30 @@ Algorithm Nr 1 has very slow running time with preprocessing, but very fast with
 Algorithm Nr 2 has very fast running time with preprocessing and significantly slow without. So it is very useful when we are using it just once and terminating the script.
 Algorithm Nr 3 is quite optimal, it is twice slower than Nr 1 without preprocessing but for a ~1/4 faster with preprocessing. 
 
+## Appendix
+
+#### Create Dictionary
+At the start I was wring the script that uses 'beautifulsoup4' module to open a web page determine set of words and add them into list.
+
+This script is specifically prepared for http://www.oxfordlearnersdictionaries.com website. To use it user should specify a link to a word dictionary and based on the dictionary it will automatically explores the paging and letter range.
+```python
+	for link in links:	
+		page = urllib.urlopen(link).read()
+		soup_page = BeautifulSoup(page, "html.parser").find('div', id='paging')
+		tags_with_url = soup_page.find_all('a')
+		for tag in tags_with_url:
+			links[link].append(tag['href'])	
+```
+[Gist](https://gist.github.com/VMarisevs/041bb381c9b80044cbc5)
+[GitHub repo]()
+
+#### Download the gzip
+After exploring oxford learners dictionaries website I had just 7726 words, which I found not enough to do countdown game. And somebody in out student project forum to a larger word list with 267751 items. I wrote another script that downloads the file, extracts it and parses into words separated with new line format.
+
 ## References
-[Some code was taken from my gist](https://gist.github.com/VMarisevs/8eb0437668cbad54aab7)
-[Combination generation code](http://stackoverflow.com/questions/127704/algorithm-to-return-all-combinations-of-k-elements-from-n)
-[Some combination theory](https://www.mathsisfun.com/combinatorics/combinations-permutations.html)
+[Project GitHub repository]()
+[Project Gist repository]()
+[Some code and structure was taken from my Anagram project](https://gist.github.com/VMarisevs/8eb0437668cbad54aab7)
+[Combination and Permutation theory](https://www.mathsisfun.com/combinatorics/combinations-permutations.html)
+[Combination generation implementation](http://stackoverflow.com/a/17996834)
+[Online solver example](http://wineverygame.com/wbg.php)
