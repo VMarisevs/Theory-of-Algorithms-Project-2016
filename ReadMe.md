@@ -37,7 +37,7 @@ To solve this game we need some sort of word list to choose from. I have created
 	: ['auctioned']
 }
 ```
-In next step if we are getting word 'cautioned':
+In next step if we are getting word 'cautioned', we inserting new value into list with same key:
 ``` javascript
 {
 	'acdeinotu' // "".join(sorted('cautioned'))
@@ -74,7 +74,7 @@ Where **n** is the number of things to choose from, and we choose **r** of them.
 > (9!)/((8!)*(9-8)!) = 362880 / 40320 = 9
 When we receive these combinations we have to use them as keys, to do that I am using hashkey function, that simply sorts the characters and polls the map and if there is one or more sets of words, it simply merges them into one list and returns result.
 ```
-Note that I am using set of combinations called *combkey*. It might save me some iterations in case we have a duplicate in the random string.
+Note that I am using set of combinations called *combkey*. It might save me some iterations in case we have a duplicate letter in the random string.
 ```
 In current case we have just 8 combinations, because we have duplicate in the string ('u')
 ```
@@ -132,10 +132,10 @@ For this particular example we have tried to visit map where words length was 9,
 |    5   | (9!)/((5!)*(9-5)!) = 362880 / 2880  = 126 |          91 |
 | Total  |                                       256 |         191 |
 
-In this particular case we poll the map 191 time. This combination generation with current algorithm can't be avoided. We sorted the string 191 time, to improve the speed we could change hashkey function to another. It will be described in ** section.
+In this particular case we poll the map 191 time. This combination generation with current algorithm can't be avoided. We sorted the string 191 time, to improve the speed we could change hashkey function to another. It will be described in *Game Solver v2* section.
 
 #### Worse case scenario
-As we already seen how this algorithm works in the average scenario, we can assume that there is no such word with generated letters. And in this case we will loop until length = 0.
+As we already seen how this algorithm works in the average scenario, we can assume that there is no such word with generated letters and all letters are unique. In this case we will loop until length = 0 without any result.
 
 | Length |           Worse case scenario          |     |
 |:------:|:--------------------------------------:|-----|
@@ -194,7 +194,7 @@ def errorchecking(chars, resultset):
 	return result
 ```
 These functions will verify if the result is correct, if not we will keep on searching. In this project it didn't work out really good you can see in the Tests chapter. 
-The reason that it didn't work out so good, because there was a lot of words with same sum of ascii codes and error checking was looping through to verify the result too many times.
+The reason that it didn't work out so good, because there was a lot of words with same sum of ascii codes and error checking was looping through each to verify the result too many times.
 
 ## Game Solver v2 updated
 #### Code name ascii-sum-square
@@ -260,8 +260,8 @@ This script is specifically prepared for http://www.oxfordlearnersdictionaries.c
 After exploring oxford learners dictionaries website I had just 7726 words, which I found not enough to do countdown game. And somebody in out student project forum to a larger word list with 267751 items. I wrote another script that downloads the file, extracts it and parses into words separated with new line format.
 
 ## References
-[Project GitHub repository]()
-[Project Gist repository]()
+[Project GitHub repository](https://github.com/VMarisevs/Theory-of-Algorithms-Project-2016)
+[Project Gist repository](https://gist.github.com/VMarisevs/1f5341e9376eacef7658)
 [Some code and structure was taken from my Anagram project](https://gist.github.com/VMarisevs/8eb0437668cbad54aab7)
 [Combination and Permutation theory](https://www.mathsisfun.com/combinatorics/combinations-permutations.html)
 [Combination generation implementation](http://stackoverflow.com/a/17996834)
