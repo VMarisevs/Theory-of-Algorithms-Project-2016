@@ -5,6 +5,9 @@
 
 # Countdown Letters Game Solver
 
+[GitHub](https://github.com/VMarisevs/Theory-of-Algorithms-Project-2016)
+[Gist](https://gist.github.com/VMarisevs/1f5341e9376eacef7658)
+
 ## How to run
 
  1. cd into repo folder
@@ -254,15 +257,15 @@ This script is specifically prepared for http://www.oxfordlearnersdictionaries.c
 			links[link].append(tag['href'])	
 ```
 [Gist](https://gist.github.com/VMarisevs/041bb381c9b80044cbc5)
-[GitHub repo]()
+[GitHub repo](https://github.com/VMarisevs/Get-the-Oxford-Dictionary)
 
 #### Download the gzip
-After exploring oxford learners dictionaries website I had just 7726 words, which I found not enough to do countdown game. And somebody in out student project forum to a larger word list with 267751 items. I wrote another script that downloads the file, extracts it and parses into words separated with new line format.
+After exploring oxford learners dictionaries website I had just 7726 words, which I found not enough to do countdown game. Some student posted in project forum a larger word list with 267751 items. I wrote another script that downloads the file, extracts it and parses into words separated with new line format.
 
 ## References
-[Project GitHub repository](https://github.com/VMarisevs/Theory-of-Algorithms-Project-2016)
-[Project Gist repository](https://gist.github.com/VMarisevs/1f5341e9376eacef7658)
-[Some code and structure was taken from my Anagram project](https://gist.github.com/VMarisevs/8eb0437668cbad54aab7)
-[Combination and Permutation theory](https://www.mathsisfun.com/combinatorics/combinations-permutations.html)
-[Combination generation implementation](http://stackoverflow.com/a/17996834)
-[Online solver example](http://wineverygame.com/wbg.php)
+1. [Project GitHub repository](https://github.com/VMarisevs/Theory-of-Algorithms-Project-2016)
+1. [Project Gist repository](https://gist.github.com/VMarisevs/1f5341e9376eacef7658)
+1. [Some code and structure was taken from my Anagram project](https://gist.github.com/VMarisevs/8eb0437668cbad54aab7)
+1. [Combination and Permutation theory](https://www.mathsisfun.com/combinatorics/combinations-permutations.html)
+1. [Combination generation implementation](http://stackoverflow.com/a/17996834)
+1. [Online solver example](http://wineverygame.com/wbg.php)
