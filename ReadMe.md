@@ -171,7 +171,7 @@ If we have 2 words 'dad' and 'fab'
 	ord('d') + ord('a') + ord('d') = 100 + 97 + 100 = 297
 	ord('f') + ord('a') + ord('b') = 102 + 97 + 98  = 297
 ```
-In this case we will have some words in the result set that are not similar to generated string. To fix this problem we need a function that will double check the result. I wrote 2 functions:
+In this case we will have some words in the result set that are not similar to generated string. To fix this problem we need a function that will double check the result. I have also separated words by their length into different Maps this will avoid getting result with same hashkey but random length. I wrote 2 functions that will validate the result:
 ```python 
 def errorcombchecking(combinations, resultset):
 	# sorting all possible combinations
