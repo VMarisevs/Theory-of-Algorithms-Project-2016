@@ -127,6 +127,7 @@ In this set of combinations we have found a result set *'wited'* with key *'deit
 
 ##### Result calculation
 For this particular example we have tried to visit map where words length was 9,8,7,6,5. If all characters would be unique we would get:
+
 | Length | with unique letters                       | in our case |
 |--------|-------------------------------------------|-------------|
 |    9   |  Not found with length 9. Iteration =   1 |           1 |
@@ -158,6 +159,7 @@ As we already seen how this algorithm works in the average scenario, we can assu
 #### Code name ascii-sum
 I made another branch of this solver to compare one of the ideas from (my previous anagram conundrum projects)[https://gist.github.com/VMarisevs/8eb0437668cbad54aab7]. The idea is to save time on the hashkey algorithm. Instead of using native *sorted()* function I will sum the ascii codes *(ord() function returns ascii code)* of the string and use it as a key to the list of results. As I have tested before cost of this operation is less that sorting a string. 
 Unfortunately this algorithm doesn't guarantee the 100% correct result. See example:
+
 | ASCII | LETTER |
 |:-----:|:------:|
 |   97  |    a   |
