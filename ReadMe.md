@@ -6,7 +6,7 @@
 # Countdown Letters Game Solver
 
 [GitHub](https://github.com/VMarisevs/Theory-of-Algorithms-Project-2016)
-[Gist](https://gist.github.com/VMarisevs/1f5341e9376eacef7658)
+[Gist](https://gist.github.com/VMarisevs/5aa8038df47acc6da9885a3d68b7fc0d)
 
 ## How to run
 
@@ -76,6 +76,7 @@ There is no 9 letter word with *'deijtuuwz'* key, so it will generate set of com
 Where **n** is the number of things to choose from, and we choose **r** of them. In our case **n** is constant length of randomly generated string = *9*. But if we don't find any word with length *8* which is **r**, we decrease **r** by one. So in this round we are getting:
 > (9!)/((8!)*(9-8)!) = 362880 / 40320 = 9
 When we receive these combinations we have to use them as keys, to do that I am using hashkey function, that simply sorts the characters and polls the map and if there is one or more sets of words, it simply merges them into one list and returns result.
+
 ```
 Note that I am using set of combinations called *combkey*. It might save me some iterations in case we have a duplicate letter in the random string.
 ```
@@ -264,7 +265,7 @@ After exploring oxford learners dictionaries website I had just 7726 words, whic
 
 ## References
 1. [Project GitHub repository](https://github.com/VMarisevs/Theory-of-Algorithms-Project-2016)
-1. [Project Gist repository](https://gist.github.com/VMarisevs/1f5341e9376eacef7658)
+1. [Project Gist repository](https://gist.github.com/VMarisevs/5aa8038df47acc6da9885a3d68b7fc0d)
 1. [Some code and structure was taken from my Anagram project](https://gist.github.com/VMarisevs/8eb0437668cbad54aab7)
 1. [Combination and Permutation theory](https://www.mathsisfun.com/combinatorics/combinations-permutations.html)
 1. [Combination generation implementation](http://stackoverflow.com/a/17996834)
